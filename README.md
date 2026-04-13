@@ -1,67 +1,107 @@
-## Foundry
+# Syariah Factory
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A smart contract factory implementing Sharia-compliant Islamic finance instruments on the blockchain using Solidity. This project provides decentralized implementations of traditional Islamic financing mechanisms.
 
-Foundry consists of:
+## Overview
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Syariah Factory provides three core Islamic finance contracts that can be instantiated through a factory pattern:
 
-## Documentation
+### Core Contracts
 
-https://book.getfoundry.sh/
+#### **Mudharabah**
+A profit-sharing partnership contract based on Islamic commerce principles. Capital is provided by one party, with returns shared according to an agreed profit-sharing percentage.
 
-## Usage
+- **Parameters**: Capital amount and profit share percentage
+- **Use Case**: Investment partnerships and venture financing
+
+#### **Murabahah**
+A cost-plus financing contract commonly used in Islamic banking. The financier adds an agreed-upon profit margin to the cost of goods.
+
+- **Parameters**: Cost of asset and profit margin
+- **Use Case**: Asset financing and installment purchases
+
+#### **Wadiah**
+A safekeeping/deposit contract ensuring secure storage of funds or assets with an optional custodian fee.
+
+- **Parameters**: Deposit amount
+- **Use Case**: Custodial services and deposits
+
+#### **SyariahFactory**
+Factory contract that creates and manages instances of all three Islamic finance contracts.
+
+- **Functions**:
+  - `createMudharabah()` - Deploy a new Mudharabah contract
+  - `createMurabahah()` - Deploy a new Murabahah contract
+  - `createWadiah()` - Deploy a new Wadiah contract
+
+## Project Structure
+
+```
+src/
+├── SyariahFactory.sol   # Main factory contract
+├── Mudharabah.sol       # Profit-sharing partnership
+├── Murabahah.sol        # Cost-plus financing
+└── Wadiah.sol           # Safekeeping deposit
+```
+
+## Development with Foundry
+
+This project uses **Foundry**, a blazing fast toolkit for Ethereum development written in Rust.
+
+### Prerequisites
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)
 
 ### Build
 
 ```shell
-$ forge build
+forge build
 ```
 
 ### Test
 
 ```shell
-$ forge test
+forge test
 ```
 
-### Format
+### Format Code
 
 ```shell
-$ forge fmt
+forge fmt
 ```
 
 ### Gas Snapshots
 
 ```shell
-$ forge snapshot
+forge snapshot
 ```
 
-### Anvil
+### Local Node (Anvil)
 
 ```shell
-$ anvil
+anvil
 ```
 
 ### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+forge script script/Deploy.s.sol --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
-### Cast
+### Cast (Interact with Contracts)
 
 ```shell
-$ cast <subcommand>
+cast <subcommand>
 ```
 
-### Help
+## Foundry Documentation
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
-# syariah-factory
+For more information, visit the [Foundry Book](https://book.getfoundry.sh/).
+
+## Contributing
+
+Contributions are welcome! Please ensure all code follows Solidity best practices and is compatible with Sharia principles.
+
+## License
+
+MIT
