@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./Mudharabah.sol";
-import "./Murabahah.sol";
-import "./Wadiah.sol";
+import {Mudharabah} from "./Mudharabah.sol";
+import {Murabahah} from "./Murabahah.sol";
+import {Wadiah} from "./Wadiah.sol";
 
 contract SyariahFactory {
     Mudharabah[] public mudharabah;
