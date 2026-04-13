@@ -6,9 +6,9 @@ import "./Murabahah.sol";
 import "./Wadiah.sol";
 
 contract SyariahFactory {
-    Mudharabah public mudharabah;
-    Murabahah public murabahah;
-    Wadiah public wadiah;
+    Mudharabah[] public mudharabah;
+    Murabahah[] public murabahah;
+    Wadiah[] public wadiah;
 
     constructor() {
         mudharabah = new Mudharabah();
