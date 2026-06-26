@@ -10,8 +10,8 @@ contract SyariahFactory {
     Murabahah[] public murabahah;
     Wadiah[] public wadiah;
 
-    function createMudharabah(uint256 _capital, uint256 _profitShare) public {
-        Mudharabah newMudharabah = new Mudharabah(_capital, _profitShare);
+    function createMudharabah(uint256 _capital, uint256 _profitShare, address _investor, address _manager) public {
+        Mudharabah newMudharabah = new Mudharabah(_capital, _profitShare, _investor, _manager);
         mudharabah.push(newMudharabah);
     }
 
