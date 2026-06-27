@@ -11,7 +11,7 @@ contract EthicForge {
     SecureVault[] public secureVaults;
 
     event PoolCreated(address poolAddress, string poolType);
-    
+
     /**
      * @notice Create a new Profit-Sharing Partnership (similar to Mudharabah)
      */
@@ -21,31 +21,23 @@ contract EthicForge {
         address investor,
         address manager
     ) public returns (address) {
-        PartnershipPool newPool = new PartnershipPool(
-            initialCapital,
-            profitSharePercentage,
-            investor,
-            manager
-        );
-        
+        PartnershipPool newPool = new PartnershipPool(initialCapital, profitSharePercentage, investor, manager);
+
         partnershipPools.push(newPool);
         emit PoolCreated(address(newPool), "Partnership");
-        
+
         return address(newPool);
     }
 
     /**
      * @notice Create a new Cost-Plus Financing (similar to Murabahah)
      */
-    function createAssetFinancing(
-        uint256 assetCost,
-        uint256 profitMargin
-    ) public returns (address) {
+    function createAssetFinancing(uint256 assetCost, uint256 profitMargin) public returns (address) {
         AssetFinancing newFinancing = new AssetFinancing(assetCost, profitMargin);
-        
+
         assetFinancings.push(newFinancing);
         emit PoolCreated(address(newFinancing), "AssetFinancing");
-        
+
         return address(newFinancing);
     }
 
@@ -54,10 +46,10 @@ contract EthicForge {
      */
     function createSecureVault(uint256 initialDeposit) public returns (address) {
         SecureVault newVault = new SecureVault(initialDeposit);
-        
+
         secureVaults.push(newVault);
         emit PoolCreated(address(newVault), "SecureVault");
-        
+
         return address(newVault);
     }
 

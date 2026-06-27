@@ -10,21 +10,16 @@ contract PartnershipPool {
     uint256 public capital;
     uint256 public totalProfit;
     uint256 public profitSharePercentage; // e.g. 30 = 30%
-    
+
     address public investor;
     address public manager; // entrepreneur / operator
 
     event ProfitDistributed(uint256 totalProfit, uint256 investorShare, uint256 managerShare);
 
-    constructor(
-        uint256 _capital,
-        uint256 _profitSharePercentage,
-        address _investor,
-        address _manager
-    ) {
+    constructor(uint256 _capital, uint256 _profitSharePercentage, address _investor, address _manager) {
         require(_capital > 0, "Capital must be greater than zero");
         require(_profitSharePercentage <= 100, "Profit share must be <= 100%");
-        
+
         capital = _capital;
         profitSharePercentage = _profitSharePercentage;
         investor = _investor;
@@ -37,14 +32,14 @@ contract PartnershipPool {
      */
     function recordProfit(uint256 _profit) external {
         require(_profit > 0, "Profit must be positive");
-        
+
         totalProfit += _profit;
-        
+
         uint256 investorShare = (_profit * profitSharePercentage) / 100;
         uint256 managerShare = _profit - investorShare;
-        
+
         emit ProfitDistributed(_profit, investorShare, managerShare);
-        
+
         // In real implementation, you would transfer tokens here
         // payable(investor).transfer(investorShare);
         // payable(manager).transfer(managerShare);

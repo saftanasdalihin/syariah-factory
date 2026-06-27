@@ -10,26 +10,23 @@ contract AssetFinancing {
     uint256 public costPrice;
     uint256 public profitMargin;
     uint256 public totalPrice;
-    
+
     address public seller;
     address public buyer;
 
     event FinancingCreated(uint256 costPrice, uint256 profitMargin, uint256 totalPrice);
 
-    constructor(
-        uint256 _costPrice,
-        uint256 _profitMargin
-    ) {
+    constructor(uint256 _costPrice, uint256 _profitMargin) {
         require(_costPrice > 0, "Cost price must be greater than zero");
         require(_profitMargin > 0, "Profit margin must be greater than zero");
-        
+
         costPrice = _costPrice;
         profitMargin = _profitMargin;
         totalPrice = _costPrice + _profitMargin;
-        
+
         // In real use case, seller and buyer would be set properly
         seller = msg.sender;
-        
+
         emit FinancingCreated(costPrice, profitMargin, totalPrice);
     }
 

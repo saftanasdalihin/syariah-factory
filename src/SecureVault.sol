@@ -16,7 +16,7 @@ contract SecureVault {
 
     constructor(uint256 _initialDeposit) {
         require(_initialDeposit > 0, "Initial deposit must be greater than zero");
-        
+
         totalDeposit = _initialDeposit;
         owner = msg.sender;
         custodian = msg.sender; // can change later
@@ -37,10 +37,10 @@ contract SecureVault {
     function withdraw(uint256 _amount) external {
         require(msg.sender == owner || msg.sender == custodian, "Not authorized");
         require(_amount <= totalDeposit, "Insufficient balance");
-        
+
         totalDeposit -= _amount;
         payable(msg.sender).transfer(_amount);
-        
+
         emit WithdrawalMade(msg.sender, _amount);
     }
 
